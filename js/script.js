@@ -5,6 +5,9 @@ const welcome = document.getElementById("welcome-screen");
 const main = document.getElementById("main-screen");
 const popupMusic = document.getElementById("popup-music");
 
+const TARGET_DATE = new Date("2025-11-22 00:00:00").getTime();
+const UNLOCK_VIDEO_CODE = "h4pyd4y";
+
 playBtn.addEventListener("click", () => {
   welcome.classList.add("hide-screen");
 
@@ -66,10 +69,10 @@ function openPopup(imageSrc, titleText, bgColor, number) {
 function closePopup() {
   popupOverlay.classList.remove("popup-show");
   popupCard.classList.remove("popup-show");
-  if (popupCard.querySelector("h2").classList.contains("popup-title-1")) {
+  if (popupCard.querySelector("h2")?.classList.contains("popup-title-1")) {
     popupCard.querySelector("h2").classList.remove("popup-title-1");
   }
-  if (popupCard.querySelector("h2").classList.contains("popup-title-2")) {
+  if (popupCard.querySelector("h2")?.classList.contains("popup-title-2")) {
     popupCard.querySelector("h2").classList.remove("popup-title-2");
   }
   popupMusic.pause();
@@ -158,63 +161,27 @@ document.querySelector("#box-2").addEventListener("click", () => {
   );
 });
 
+function isVideoUnlocked() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("unlock") === UNLOCK_VIDEO_CODE;
+}
+
 document.querySelector("#box-3").addEventListener("click", () => {
-  popupMusic.currentTime = 0;
-  popupMusic.play().catch(() => {});
-  document.querySelector("#popup-content").innerHTML = `
-    <button
-      id="popup-close"
-      class="absolute -top-3 -right-3 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-3xl hover:scale-110 transition"
-    >
-      <img src="images/material-symbols-close-rounded.svg" alt="Close" />
-    </button>
+  if (isVideoUnlocked()) {
+    popupVideo();
+    return;
+  }
 
-    <div class="popup-3-gradient rounded-2xl p-6 pt-10 pb-10 text-center">
+  const now = Date.now();
 
-      <h2 class="text-xl font-semibold leading-[28px] tracking-[1px] popup-title-3">
-        Oopsie, not yet!
-      </h2>
+  if (now < TARGET_DATE) {
+    popupMusic.currentTime = 0;
+    popupMusic.play().catch(() => {});
+    popupNotYet();
+    return;
+  }
 
-      <p class="mt-5 text-xl text-[#7B4CA0] font-semibold leading-[28px] tracking-[1px]">
-        Come back when it's officially your day 
-        <span class="emoji">🥳</span>
-      </p>
-
-      <div class="flex justify-center gap-2 mt-8">
-
-        <div class="timer-box">
-          <div id="cd-days" class="timer-number">00</div>
-          <div class="timer-label">DAYS</div>
-        </div>
-
-        <div class="timer-box">
-          <div id="cd-hours" class="timer-number">00</div>
-          <div class="timer-label">HOURS</div>
-        </div>
-
-        <div class="timer-box">
-          <div id="cd-mins" class="timer-number">00</div>
-          <div class="timer-label">MINS</div>
-        </div>
-
-        <div class="timer-box">
-          <div id="cd-secs" class="timer-number">00</div>
-          <div class="timer-label">SECS</div>
-        </div>
-
-      </div>
-    </div>
-  `;
-
-  const targetDate = new Date("2025-11-20 00:00:00").getTime();
-  startCountdown(targetDate, true);
-
-  popupOverlay.classList.add("popup-show");
-  popupCard.classList.add("popup-show");
-
-  document.getElementById("popup-close").addEventListener("click", () => {
-    closePopup();
-  });
+  popupVideo();
 });
 
 function resetPopupHTML() {
@@ -234,4 +201,90 @@ function resetPopupHTML() {
       <h2 class="text-center font-semibold text-xl tracking-[1px] leading-[28px] max-w-[235px] mx-auto"></h2>
     </div>
   `;
+}
+
+function popupVideo() {
+  document.querySelector("#popup-content").innerHTML = `
+    <button
+      id="popup-close"
+      class="absolute -top-4 -right-4 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-50"
+    >
+      <img src="images/material-symbols-close-rounded.svg" alt="Close" class="w-6" />
+    </button>
+
+    <div class="rounded-2xl overflow-hidden">
+      <div class="relative w-full overflow-hidden rounded-2xl">
+        <img src="images/video-thumb.png" class="w-full h-auto" />
+
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-[3px] z-10"></div>
+
+        <button
+          id="video-play-btn"
+          class="absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 bg-white/40 w-[72px] h-[72px] rounded-full shadow-md flex items-center justify-center backdrop-blur-md hover:scale-110 transition z-20"
+        >
+          <img src="images/mingcute_play-fill-white.svg" class="w-9" />
+        </button>
+
+        <p class="absolute left-1/2 top-[58%] -translate-x-1/2 text-white text-[11px] font-medium tracking-wide z-20">
+          Play Me
+        </p>
+
+        <p class="absolute left-1/2 bottom-4 -translate-x-1/2 text-white text-xl font-semibold tracking-[1px] z-20 drop-shadow-lg">
+          A Year of You💜
+        </p>
+      </div>
+    </div>
+  `;
+
+  popupOverlay.classList.add("popup-show");
+  popupCard.classList.add("popup-show");
+
+  document.getElementById("popup-close").addEventListener("click", closePopup);
+
+  const videoUrl =
+    "https://is3.cloudhost.id/privatestar/your-special-day/videos/lv_0_20251112230752.mp4";
+  document.getElementById("video-play-btn").addEventListener("click", () => {
+    window.open(videoUrl, "_blank");
+  });
+}
+
+function popupNotYet() {
+  popupMusic.currentTime = 0;
+  popupMusic.play().catch(() => {});
+
+  document.querySelector("#popup-content").innerHTML = `
+    <button
+      id="popup-close"
+      class="absolute -top-3 -right-3 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition"
+    >
+      <img src="images/material-symbols-close-rounded.svg" alt="Close" />
+    </button>
+
+    <div class="popup-3-gradient rounded-2xl p-6 pt-10 pb-10 text-center">
+
+      <h2 class="text-xl font-semibold leading-[28px] tracking-[1px] popup-title-3">
+        Oopsie, not yet!
+      </h2>
+
+      <p class="mt-5 text-xl text-[#7B4CA0] font-semibold leading-[28px] tracking-[1px]">
+        Come back when it's officially your day 
+        <span class="emoji">🥳</span>
+      </p>
+
+      <div class="flex justify-center gap-2 mt-8">
+        <div class="timer-box"><div id="cd-days" class="timer-number">00</div><div class="timer-label">DAYS</div></div>
+        <div class="timer-box"><div id="cd-hours" class="timer-number">00</div><div class="timer-label">HOURS</div></div>
+        <div class="timer-box"><div id="cd-mins" class="timer-number">00</div><div class="timer-label">MINS</div></div>
+        <div class="timer-box"><div id="cd-secs" class="timer-number">00</div><div class="timer-label">SECS</div></div>
+      </div>
+
+    </div>
+  `;
+
+  startCountdown(TARGET_DATE);
+
+  popupOverlay.classList.add("popup-show");
+  popupCard.classList.add("popup-show");
+
+  document.getElementById("popup-close").addEventListener("click", closePopup);
 }
