@@ -229,7 +229,7 @@ function popupVideo() {
           Play Me
         </p>
 
-        <p class="absolute left-1/2 bottom-4 -translate-x-1/2 text-white text-xl font-semibold tracking-[1px] z-20 drop-shadow-lg">
+        <p class="absolute left-1/2 bottom-4 text-center w-full -translate-x-1/2 text-white text-xl font-semibold tracking-[1px] z-20 drop-shadow-lg">
           A Year of You💜
         </p>
       </div>
