@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Special Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <link
+      rel="shortcut icon"
+      href="images/welcome-cake.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <main class="relative">
+      <section
+        id="welcome-screen"
+        class="w-full h-screen overflow-hidden relative bg-gradient-to-b from-[#3A1C47] to-[#8E44AD]"
+      >
+        <div class="max-w-[500px] relative mx-auto flex flex-col h-full">
+          <canvas
+            class="absolute h-screen w-full confetti-canvas confetti-basic"
+          ></canvas>
+          <h3
+            class="text-center text-white text-[32px] w-[243px] absolute bottom-[460px] left-1/2 transform -translate-x-1/2 mx-auto font-paytone tracking-[1.5px] leading-[50px] title-intro"
+          >
+            The Countdown to Your Special Day Begins
+          </h3>
+          <img
+            src="images/welcome-cake.png"
+            alt="welcome cake"
+            class="w-[160px] mx-auto z-10 absolute bottom-[190px] left-1/2 transform -translate-x-1/2 cake-intro"
+          />
+          <div
+            class="absolute z-10 left-1/2 transform -translate-x-1/2 bottom-[60px] btn-intro"
+          >
+            <div
+              class="w-[72px] h-[72px] rounded-full border border-[#8E44AD] flex items-center justify-center cursor-pointer bg-white/30 hover:bg-[#F8E1FA] transition hover:scale-105"
+            >
+              <img src="images/mingcute-play-fill.svg" alt="play" class="w-9" />
+            </div>
+            <p class="text-xs text-center text-[#8E44AD] mt-1.5">Click Me</p>
+          </div>
+          <div>
+            <div
+              class="balloon-wrapper balloon-intro absolute -left-[40px] bottom-[240px]"
+              style="animation-delay: 0s"
+            >
+              <img
+                src="images/balon-1.png"
+                class="w-[100px] balloon-animate"
+                style="animation-delay: 0s"
+              />
+            </div>
+            <div
+              class="balloon-wrapper balloon-intro absolute -left-[40px] bottom-[60px]"
+              style="animation-delay: 0.5s"
+            >
+              <img
+                src="images/balon-2.png"
+                class="w-[100px] balloon-animate"
+                style="animation-delay: 0.5s"
+              />
+            </div>
+            <div
+              class="balloon-wrapper balloon-intro absolute left-[1px] bottom-[160px]"
+              style="animation-delay: 1s"
+            >
+              <img
+                src="images/balon-3.png"
+                class="w-[100px] balloon-animate"
+                style="animation-delay: 1s"
+              />
+            </div>
+          </div>
+          <div>
+            <div
+              class="balloon-wrapper balloon-intro absolute -right-[40px] bottom-[240px]"
+              style="animation-delay: 0.8s"
+            >
+              <img
+                src="images/balon-1.png"
+                class="w-[100px] balloon-animate"
+                style="animation-delay: 0.8s"
+              />
+            </div>
+            <div
+              class="balloon-wrapper balloon-intro absolute -right-[40px] bottom-[60px]"
+              style="animation-delay: 0.3s"
+            >
+              <img
+                src="images/balon-2.png"
+                class="w-[100px] balloon-animate"
+                style="animation-delay: 0.3s"
+              />
+            </div>
+            <div
+              class="balloon-wrapper balloon-intro absolute right-[1px] bottom-[160px]"
+              style="animation-delay: 1.5s"
+            >
+              <img
+                src="images/balon-3.png"
+                class="w-[100px] balloon-animate"
+                style="animation-delay: 1.5s"
+              />
+            </div>
+          </div>
+          <div
+            class="w-[650px] h-[650px] rounded-full bg-[#DCC5E6] absolute -bottom-[420px] left-1/2 transform -translate-x-1/2"
+          ></div>
+        </div>
+      </section>
+
+      <section
+        id="main-screen"
+        class="w-full h-screen overflow-hidden bg-gradient-to-t from-[#3A1C47] to-[#8E44AD]"
+      >
+        <canvas
+          class="absolute h-screen w-full confetti-canvas confetti-ribbon"
+        ></canvas>
+        <div
+          class="max-w-[500px] relative mx-auto flex flex-col justify-between h-full py-16"
+        >
+          <div>
+            <div class="flex items-center gap-1 justify-center main-title">
+              <h2
+                class="text-[128px] leading-[106px] font-bold bg-gradient-to-b from-[#FFFFFF] to-[#F5C3C3] bg-clip-text text-transparent"
+              >
+                3
+              </h2>
+              <div class="text-white">
+                <h3 class="text-[36px]">LITTLE BOX</h3>
+                <h3 class="text-[36px] font-bold -mt-3">FOR YOU</h3>
+              </div>
+            </div>
+            <p
+              class="mt-2 text-[#DCC5E6] leading-[28px] text-[15px] text-center max-w-[357px] mx-auto tracking-[1px] main-paragraph"
+            >
+              Each box holds a little surprise. Open them one at a time.
+            </p>
+          </div>
+          <div class="flex flex-col gap-10">
+            <div
+              class="relative flex justify-center box-1 box-animate box-clickable"
+              id="box-1"
+              style="--d: 0s"
+            >
+              <div
+                class="absolute w-[150px] h-[150px] bg-white opacity-[0.50] blur-3xl rounded-full"
+              ></div>
+              <img src="images/box-1.svg" class="relative box-hover" />
+            </div>
+            <div
+              class="relative flex justify-center box-2 box-animate box-clickable"
+              id="box-2"
+              style="--d: 0.3s"
+            >
+              <div
+                class="absolute w-[150px] h-[150px] bg-white opacity-[0.50] blur-3xl rounded-full"
+              ></div>
+              <img src="images/box-2.svg" class="relative box-hover" />
+            </div>
+            <div
+              class="relative flex justify-center box-3 box-animate box-clickable"
+              id="box-3"
+              style="--d: 0.6s"
+            >
+              <div
+                class="absolute w-[150px] h-[150px] bg-white opacity-[0.50] blur-3xl rounded-full"
+              ></div>
+              <img src="images/box-3.svg" class="relative box-hover" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      id="popup-overlay"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-50"
+    ></div>
+    <div
+      id="popup-card"
+      class="fixed inset-0 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 scale-90 z-50 relative"
+    >
+      <div
+        id="popup-content"
+        class="rounded-2xl w-[90%] max-w-[350px] shadow-xl relative"
+      >
+        <button
+          id="popup-close"
+          class="absolute -top-3 -right-3 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-3xl hover:scale-110 transition"
+        >
+          <img src="images/material-symbols-close-rounded.svg" alt="Close" />
+        </button>
+
+        <div class="rounded-t-2xl overflow-hidden">
+          <img src="#" class="w-full main-img" />
+        </div>
+        <div class="pb-10">
+          <h2
+            class="text-center font-semibold text-xl tracking-[1px] leading-[28px] max-w-[235px] mx-auto"
+          ></h2>
+        </div>
+      </div>
+    </div>
+
+    <audio id="popup-music" loop src="sounds/box-3.mp3"></audio>
+
+    <script src="js/confetti.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
