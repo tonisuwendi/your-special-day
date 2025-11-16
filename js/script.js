@@ -209,12 +209,11 @@ function popupNotYetBox12() {
     <div class="popup-3-gradient rounded-2xl p-6 pt-10 pb-10 text-center">
 
       <h2 class="text-xl font-semibold leading-[28px] tracking-[1px] popup-title-3">
-        Not yet!
+        Oppsie, Almost there!
       </h2>
 
       <p class="mt-5 text-xl text-[#7B4CA0] font-semibold leading-[28px] tracking-[1px]">
-        This box unlocks on <br>
-        <span class="emoji">🕗</span> 19 November - 20:00
+        Tap again after the box has arrived ✨✨!!
       </p>
 
       <div class="flex justify-center gap-2 mt-8">
