@@ -6,6 +6,7 @@ const main = document.getElementById("main-screen");
 const popupMusic = document.getElementById("popup-music");
 
 const TARGET_DATE = new Date("2025-11-22 00:00:00").getTime();
+const BOX_1_2_TARGET_DATE = new Date("2025-11-19 20:00:00").getTime();
 const UNLOCK_VIDEO_CODE = "h4pyd4y";
 
 playBtn.addEventListener("click", () => {
@@ -144,6 +145,22 @@ popupOverlay.addEventListener("click", closePopup);
 popupClose.addEventListener("click", closePopup);
 
 document.querySelector("#box-1").addEventListener("click", () => {
+  if (isVideoUnlocked()) {
+    openPopup(
+      "images/popup-1.png",
+      "An Essential for Your Skripsi Journey ✨",
+      "#DCC5E6",
+      1
+    );
+    return;
+  }
+
+  const now = Date.now();
+  if (now < BOX_1_2_TARGET_DATE) {
+    popupNotYetBox12();
+    return;
+  }
+
   openPopup(
     "images/popup-1.png",
     "An Essential for Your Skripsi Journey ✨",
@@ -153,6 +170,22 @@ document.querySelector("#box-1").addEventListener("click", () => {
 });
 
 document.querySelector("#box-2").addEventListener("click", () => {
+  if (isVideoUnlocked()) {
+    openPopup(
+      "images/popup-2.png",
+      "Open when the mid-month blues arrive🌙",
+      "#32183D",
+      2
+    );
+    return;
+  }
+
+  const now = Date.now();
+  if (now < BOX_1_2_TARGET_DATE) {
+    popupNotYetBox12();
+    return;
+  }
+
   openPopup(
     "images/popup-2.png",
     "Open when the mid-month blues arrive🌙",
@@ -160,6 +193,47 @@ document.querySelector("#box-2").addEventListener("click", () => {
     2
   );
 });
+
+function popupNotYetBox12() {
+  popupMusic.currentTime = 0;
+  popupMusic.play().catch(() => {});
+
+  document.querySelector("#popup-content").innerHTML = `
+    <button
+      id="popup-close"
+      class="absolute -top-3 -right-3 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition"
+    >
+      <img src="images/material-symbols-close-rounded.svg" alt="Close" />
+    </button>
+
+    <div class="popup-3-gradient rounded-2xl p-6 pt-10 pb-10 text-center">
+
+      <h2 class="text-xl font-semibold leading-[28px] tracking-[1px] popup-title-3">
+        Not yet!
+      </h2>
+
+      <p class="mt-5 text-xl text-[#7B4CA0] font-semibold leading-[28px] tracking-[1px]">
+        This box unlocks on <br>
+        <span class="emoji">🕗</span> 19 November - 20:00
+      </p>
+
+      <div class="flex justify-center gap-2 mt-8">
+        <div class="timer-box"><div id="cd-days" class="timer-number">00</div><div class="timer-label">DAYS</div></div>
+        <div class="timer-box"><div id="cd-hours" class="timer-number">00</div><div class="timer-label">HOURS</div></div>
+        <div class="timer-box"><div id="cd-mins" class="timer-number">00</div><div class="timer-label">MINS</div></div>
+        <div class="timer-box"><div id="cd-secs" class="timer-number">00</div><div class="timer-label">SECS</div></div>
+      </div>
+
+    </div>
+  `;
+
+  startCountdown(BOX_1_2_TARGET_DATE);
+
+  popupOverlay.classList.add("popup-show");
+  popupCard.classList.add("popup-show");
+
+  document.getElementById("popup-close").addEventListener("click", closePopup);
+}
 
 function isVideoUnlocked() {
   const params = new URLSearchParams(window.location.search);
